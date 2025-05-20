@@ -7,11 +7,34 @@
   display: flex;
   flex-direction: column;
 
-  /* ✅ Responsiv fast størrelse */
   width: 100%;
   max-width: 220px;
   flex: 1 1 220px;
 }
+
+/* 📱 På små skjermer – kortet er maks 90% av bredden */
+@media (max-width: 640px) {
+  .movie-card {
+    max-width: 90vw;
+  }
+}
+
+/* 💻 På mellomstore skjermer – litt bredere */
+@media (min-width: 768px) {
+  .movie-card {
+    max-width: 250px;
+    flex: 1 1 250px;
+  }
+}
+
+/* 🖥️ På store skjermer – enda litt større */
+@media (min-width: 1024px) {
+  .movie-card {
+    max-width: 280px;
+    flex: 1 1 280px;
+  }
+}
+
 
 
 .movie-card:hover {
