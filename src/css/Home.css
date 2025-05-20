@@ -55,9 +55,11 @@
 
 .movies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* mindre min-bredde */
+  max-width: 1000px; /* begrenser total bredde */
+  margin: 0 auto; /* sentrerer */
   gap: 1.5rem;
   padding: 1rem;
-  width: 100%;
-  box-sizing: border-box;
+  justify-items: center;
 }
+
