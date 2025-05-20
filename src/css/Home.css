@@ -77,13 +77,14 @@
 
 .movies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem 1rem;
   justify-items: center;
-  padding: 1rem;
-  max-width: 1400px;
+  max-width: 1300px;
   margin: 0 auto;
 }
+
 
 
 
