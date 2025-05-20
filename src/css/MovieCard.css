@@ -6,35 +6,30 @@
   transition: transform 0.2s;
   display: flex;
   flex-direction: column;
-
   width: 100%;
-  max-width: 220px;
-  flex: 1 1 220px;
+  flex: 1 1 auto;
 }
 
-/* 📱 På små skjermer – kortet er maks 90% av bredden */
+/* 📱 Mobil */
 @media (max-width: 640px) {
   .movie-card {
-    max-width: 90vw;
+    max-width: 100%;
   }
 }
 
-/* 💻 På mellomstore skjermer – litt bredere */
-@media (min-width: 768px) {
+/* 💻 Mellomstore skjermer */
+@media (min-width: 641px) and (max-width: 1023px) {
   .movie-card {
-    max-width: 250px;
-    flex: 1 1 250px;
+    max-width: 220px;
   }
 }
 
-/* 🖥️ På store skjermer – enda litt større */
+/* 🖥️ Store skjermer */
 @media (min-width: 1024px) {
   .movie-card {
-    max-width: 280px;
-    flex: 1 1 280px;
+    max-width: 250px;
   }
 }
-
 
 
 .movie-card:hover {
