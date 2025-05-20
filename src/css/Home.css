@@ -77,11 +77,13 @@
 
 .movies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* mindre min-bredde */
-  max-width: 1000px; /* begrenser total bredde */
-  margin: 0 auto; /* sentrerer */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1.5rem;
+  justify-content: center;
   padding: 1rem;
-  justify-items: center;
+  width: 100%;
+  max-width: 1200px; /* ✅ hindrer at grid sprer seg for bredt */
+  margin: 0 auto;
 }
+
 

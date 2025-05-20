@@ -46,12 +46,15 @@
   }
 }
 
-.movies-grid > * {
-  display: flex;
-  flex-wrap: wrap;
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1.5rem;
   justify-content: center;
-  max-width: 90vw;
-  animation: fadeIn 0.3s ease-out forwards;
+  padding: 1rem;
+  width: 100%;
+  max-width: 1200px; /* ✅ hindrer at grid sprer seg for bredt */
+  margin: 0 auto;
 }
+
 

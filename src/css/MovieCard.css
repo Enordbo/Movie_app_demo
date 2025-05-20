@@ -4,10 +4,15 @@
   overflow: hidden;
   background-color: #1a1a1a;
   transition: transform 0.2s;
-  height: auto;
   display: flex;
   flex-direction: column;
+
+  /* ✅ Responsiv fast størrelse */
+  width: 100%;
+  max-width: 220px;
+  flex: 1 1 220px;
 }
+
 
 .movie-card:hover {
   transform: translateY(-5px);
@@ -120,5 +125,11 @@
     width: 32px;
     height: 32px;
     font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-card {
+    max-width: 90vw;  /* ✅ gjør at den aldri går ut av skjermen */
   }
 }
