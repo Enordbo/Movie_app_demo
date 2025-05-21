@@ -1,5 +1,6 @@
 .home {
-  padding: 2rem 0;
+  padding: 2rem;
+  justify-content: center;
   width: 100%;
   box-sizing: border-box;
 }
