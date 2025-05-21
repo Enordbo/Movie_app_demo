@@ -76,9 +76,8 @@ const Account = () => {
             <img
               src={
                 preview ||
-                (profileImage
-                  ? `https://e149-51-174-77-66.ngrok-free.app/uploads/${profileImage}`
-                  : " https://e149-51-174-77-66.ngrok-free.app/uploads/default-avatar.png")
+                profileImage ||
+                "https://e149-51-174-77-66.ngrok-free.app/uploads/default-avatar.png"
               }
               alt="Profile Picture"
               className="profile-avatar"
