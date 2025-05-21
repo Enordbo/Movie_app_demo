@@ -44,6 +44,10 @@ function Home() {
 
   return (
     <div className="home">
+      <div className="header-home-page">
+        <h1>Find Your Next Favorite Movie</h1>
+        <p><br  />Scroll thru popular movies or search for movies you want to read about</p>
+      </div>
       <form onSubmit={handleSearch} className="search-form">
         <input
           type="text"

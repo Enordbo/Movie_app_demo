@@ -5,6 +5,13 @@
   box-sizing: border-box;
 }
 
+.header-home-page {
+  justify-items: center;
+  text-align: center;
+  padding: 5rem;
+  color: #ffffff;
+}
+
 .search-form {
   max-width: 600px;
   margin: 0 auto 2rem;
@@ -28,6 +35,7 @@
 .search-input:focus {
   outline: none;
   box-shadow: 0 0 0 2px #666;
+
 }
 
 .search-button {
@@ -51,6 +59,12 @@
     padding: 1rem 0;
   }
 
+  .header-home-page {
+    font-size: 18px;
+    
+    
+  }
+
   .search-form {
     margin-bottom: 1rem;
   }
@@ -66,9 +80,14 @@
     align-items: center;
   }
 
-  .search-input,
+  .search-input, 
   .search-button {
-    width: 100%;
+    width: 70vw;
+    text-align: center;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #000000;
+    background-color: #dddddd;
   }
 
   .search-button {
