@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "../css/LoginSignup.css";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
+
 
 const LoginSignup = () => {
   const [action, setAction] = useState("login");
@@ -9,8 +12,11 @@ const LoginSignup = () => {
     email: "",
     password: "",
   });
+
   const [forgotSent, setForgotSent] = useState(false);
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,7 +28,7 @@ const LoginSignup = () => {
 
     const endpoint =
       action === "signup"
-        ? "http://localhost:3001/api/register"
+        ? "http://localhost:3001/api/signup"
         : "http://localhost:3001/api/login";
 
     try {
@@ -33,10 +39,16 @@ const LoginSignup = () => {
       });
 
       const data = await response.json();
-      if (!response.ok) throw new Error(data.message);
 
-      localStorage.setItem("token", data.token);
-      navigate("/account");
+      //if (!response.ok) throw new Error(data.message);
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        login(data.user);
+        console.log("Login successful, token:", data.token);
+        navigate("/"); // eller der du vil brukeren skal
+      } else {
+        alert("Login failed: Missing token");
+      }
     } catch (err) {
       alert("Feil: " + err.message);
     }
@@ -108,14 +120,15 @@ const LoginSignup = () => {
 
         <div className="forgot-password">
           {forgotSent ? (
-            <span>Lenke for tilbakestilling sendt til e-post.</span>
+            <span>Password reset link has been sent to your email.</span>
           ) : (
+            <div>Forgot Password? <span/>
             <span
               onClick={handleForgotPassword}
               style={{ cursor: "pointer", color: "blue" }}
             >
-              Glemt passord?
-            </span>
+              Click Here!
+            </span></div>
           )}
         </div>
 
