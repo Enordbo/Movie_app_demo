@@ -81,15 +81,9 @@
   gap: 2rem;
   padding: 2rem 1rem;
   justify-items: center;
+  width: 100%;
   max-width: 1300px;
   margin: 0 auto;
-}
-
-.home .movie-card {
-  .movie-card {
-    max-width: 280px;
-    min-height: 450px;
-  }
 }
 
 
