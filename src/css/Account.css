@@ -155,3 +155,45 @@
 .account-container p {
   color: #000000;
 }
+
+@media (max-width: 768px) {
+  .account-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .account-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .account-tabs {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .account-tabs button {
+    width: 100%;
+  }
+
+  .account-tab-content input {
+    font-size: 1rem;
+  }
+
+  .account-tab-content button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .profile-picture-wrapper {
+    width: 100px;
+    height: 100px;
+  }
+
+  .overlay-text {
+    font-size: 0.8rem;
+  }
+}
