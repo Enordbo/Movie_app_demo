@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../css/LoginSignup.css";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-
 
 const LoginSignup = () => {
   const [action, setAction] = useState("login");
@@ -12,11 +10,9 @@ const LoginSignup = () => {
     email: "",
     password: "",
   });
-
   const [forgotSent, setForgotSent] = useState(false);
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -28,8 +24,8 @@ const LoginSignup = () => {
 
     const endpoint =
       action === "signup"
-        ? "http://`${import.meta.env.VITE_API_URL}/api/signup"
-        : "http://`${import.meta.env.VITE_API_URL}/api/login";
+        ? `${import.meta.env.VITE_API_URL}/api/signup`
+        : `${import.meta.env.VITE_API_URL}/api/login`;
 
     try {
       const response = await fetch(endpoint, {
@@ -38,27 +34,32 @@ const LoginSignup = () => {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      console.log("Request to:", endpoint);
+      console.log("Payload:", formData);
+      console.log("Status:", response.status);
 
-      //if (!response.ok) throw new Error(data.message);
+      const data = await response.json();
+      console.log("Response data:", data);
+
       if (data.token) {
         localStorage.setItem("token", data.token);
         login(data.user);
-        navigate("/"); // eller der du vil brukeren skal
+        navigate("/account");
       } else {
-        alert("Login failed: Missing token");
+        alert(data.message || "Login failed");
       }
     } catch (err) {
+      console.error("Login error:", err);
       alert("Feil: " + err.message);
     }
   };
 
   const handleForgotPassword = async () => {
-    if (!formData.email) return alert("Skriv inn e-post først");
+    if (!formData.email) return alert("Enter your email first!");
 
     try {
       const response = await fetch(
-        "http://`${import.meta.env.VITE_API_URL}/api/forgot-password",
+        `${import.meta.env.VITE_API_URL}/api/forgot-password`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -119,15 +120,17 @@ const LoginSignup = () => {
 
         <div className="forgot-password">
           {forgotSent ? (
-            <span>Password reset link has been sent to your email.</span>
+            <span>Lenke for tilbakestilling sendt til e-post.</span>
           ) : (
-            <div>Forgot Password? <span/>
-            <span
-              onClick={handleForgotPassword}
-              style={{ cursor: "pointer", color: "blue" }}
-            >
-              Click Here!
-            </span></div>
+            <div>
+              Forgot password? <span />
+              <span
+                onClick={handleForgotPassword}
+                style={{ cursor: "pointer", color: "blue" }}
+              >
+                Click Here!
+              </span>
+            </div>
           )}
         </div>
 
