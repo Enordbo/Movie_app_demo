@@ -62,30 +62,30 @@ const Account = () => {
 
   return (
     <div className="account-container">
-      <h2>Min konto</h2>
+      <h2>My Account</h2>
 
       <div className="account-header">
-      <div className="profile-picture-wrapper">
-        <label htmlFor="avatar-upload" className="avatar-overlay">
-          <img
-            src={
-              preview ||
-              (profileImage
-                ? `http://localhost:3001/uploads/${profileImage}`
-                : "http://localhost:3001/uploads/default-avatar.png")
-            }
-            alt="Profile Picture"
-            className="profile-avatar"
+        <div className="profile-picture-wrapper">
+          <label htmlFor="avatar-upload" className="avatar-overlay">
+            <img
+              src={
+                preview ||
+                (profileImage
+                  ? `http://localhost:3001/uploads/${profileImage}`
+                  : "http://localhost:3001/uploads/default-avatar.png")
+              }
+              alt="Profile Picture"
+              className="profile-avatar"
+            />
+            <div className="overlay-text">Edit Picture</div>
+          </label>
+          <input
+            type="file"
+            id="avatar-upload"
+            onChange={handleImageChange}
+            style={{ display: "none" }}
           />
-          <div className="overlay-text">Edit Picture</div>
-        </label>
-        <input
-          type="file"
-          id="avatar-upload"
-          onChange={handleImageChange}
-          style={{ display: "none" }}
-        />
-      </div>
+        </div>
         <div className="user-info">
           <p>
             <strong>Name:</strong> {user?.name}

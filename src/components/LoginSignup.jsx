@@ -1,81 +1,66 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext.jsx";
 import "../css/LoginSignup.css";
-
-import user_icon from "./assets/person.png";
-import email_icon from "./assets/email.png";
-import password_icon from "./assets/password.png";
+import { useNavigate } from "react-router-dom";
 
 const LoginSignup = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { login } = useContext(AuthContext);
-
-  const redirectFrom = location.state?.from?.pathname || "/account";
-  const cameFromProtectedRoute = !!location.state?.from;
-
   const [action, setAction] = useState("login");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
   });
-
   const [forgotSent, setForgotSent] = useState(false);
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const endpoint = action === "login" ? "/api/login" : "/api/signup";
+
+    const endpoint =
+      action === "signup"
+        ? "http://localhost:3001/api/register"
+        : "http://localhost:3001/api/login";
 
     try {
-      const response = await fetch(`http://localhost:3001${endpoint}`, {
+      const response = await fetch(endpoint, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
       if (!response.ok) throw new Error(data.message);
 
-      if (action === "login") {
-        localStorage.setItem("token", data.token);
-        login(data.user);
-        navigate(redirectFrom);
-      }
-
-      alert(data.message);
-    } catch (error) {
-      alert("Feil: " + error.message);
+      localStorage.setItem("token", data.token);
+      navigate("/account");
+    } catch (err) {
+      alert("Feil: " + err.message);
     }
   };
-
 
   const handleForgotPassword = async () => {
     if (!formData.email) return alert("Skriv inn e-post først");
 
     try {
-      const response = await fetch("http://localhost:3001/api/forgot-password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: formData.email }),
-      });
+      const response = await fetch(
+        "http://localhost:3001/api/forgot-password",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: formData.email }),
+        }
+      );
 
       const data = await response.json();
       if (!response.ok) throw new Error(data.message);
 
       setForgotSent(true);
-    } catch (err) {
-      alert("Feil: " + err.message);
+    } catch (error) {
+      alert("Feil: " + error.message);
     }
   };
 
@@ -85,46 +70,37 @@ const LoginSignup = () => {
         <div className="text">{action === "login" ? "Login" : "Sign Up"}</div>
         <div className="underline"></div>
       </div>
-
-      {cameFromProtectedRoute && (
-        <p className="info-message">You need to login to access all features.</p>
-      )}
-
       <form onSubmit={handleSubmit}>
         <div className="inputs">
           {action === "signup" && (
             <div className="input">
-              <img src={user_icon} alt="Username" />
               <input
                 type="text"
-                name="name"
                 placeholder="Name"
+                name="name"
                 value={formData.name}
-                onChange={handleChange}
+                onChange={handleInputChange}
+                required
               />
             </div>
           )}
-
           <div className="input">
-            <img src={email_icon} alt="email" />
             <input
               type="email"
-              name="email"
               placeholder="Email"
+              name="email"
               value={formData.email}
-              onChange={handleChange}
+              onChange={handleInputChange}
               required
             />
           </div>
-
           <div className="input">
-            <img src={password_icon} alt="password" />
             <input
               type="password"
-              name="password"
               placeholder="Password"
+              name="password"
               value={formData.password}
-              onChange={handleChange}
+              onChange={handleInputChange}
               required
             />
           </div>
@@ -132,12 +108,14 @@ const LoginSignup = () => {
 
         <div className="forgot-password">
           {forgotSent ? (
-            <span>Password reset is sent to your Email.</span>
+            <span>Lenke for tilbakestilling sendt til e-post.</span>
           ) : (
-            <div>Forgot Password? <span/>
-            <span onClick={handleForgotPassword} style={{ cursor: "pointer", color: "blue" }}>
-              click Here!
-            </span></div>
+            <span
+              onClick={handleForgotPassword}
+              style={{ cursor: "pointer", color: "blue" }}
+            >
+              Glemt passord?
+            </span>
           )}
         </div>
 
