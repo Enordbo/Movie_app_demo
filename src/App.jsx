@@ -8,13 +8,13 @@ import NavBar from "./components/NavBar";
 function App() {
   return (
     <Movieprovider>
-        <NavBar />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/favorites" element={<Favorites />} />
-          </Routes>
-        </main>
+      <NavBar />
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/favorites" element={<Favorites />} />
+        </Routes>
+      </main>
     </Movieprovider>
   );
 }
