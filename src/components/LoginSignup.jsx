@@ -28,8 +28,8 @@ const LoginSignup = () => {
 
     const endpoint =
       action === "signup"
-        ? "http://localhost:3001/api/signup"
-        : "http://localhost:3001/api/login";
+        ? "http://`${import.meta.env.VITE_API_URL}/api/signup"
+        : "http://`${import.meta.env.VITE_API_URL}/api/login";
 
     try {
       const response = await fetch(endpoint, {
@@ -44,7 +44,6 @@ const LoginSignup = () => {
       if (data.token) {
         localStorage.setItem("token", data.token);
         login(data.user);
-        console.log("Login successful, token:", data.token);
         navigate("/"); // eller der du vil brukeren skal
       } else {
         alert("Login failed: Missing token");
@@ -59,7 +58,7 @@ const LoginSignup = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3001/api/forgot-password",
+        "http://`${import.meta.env.VITE_API_URL}/api/forgot-password",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
