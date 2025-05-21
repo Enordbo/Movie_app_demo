@@ -46,17 +46,25 @@
   }
 }
 
-.movies-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  padding: 2rem 1rem;
-  justify-items: center;
-  max-width: 1300px;
-  margin: 0 auto;
+.favorites .movies-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
 }
 
 
+
+.favorites .movie-card {
+  width: 25%;
+  max-width: 280px;
+}
+
+@media (max-width: 768px) {
+  .favorites .movie-card {
+    width: 100%;
+  }
+}
 
 
 

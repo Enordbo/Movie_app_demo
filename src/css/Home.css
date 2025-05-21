@@ -85,6 +85,11 @@
   margin: 0 auto;
 }
 
+.home .movie-card {
+  width: 100vw;
+  max-width: 100%;
+}
+
 
 
 
