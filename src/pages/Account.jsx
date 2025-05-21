@@ -13,11 +13,14 @@ const Account = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/user", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const response = await fetch(
+          "https://e149-51-174-77-66.ngrok-free.app/api/user",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
         const data = await response.json();
         setAccountData(data);
         setProfileImage(data.profileImage);
@@ -42,13 +45,16 @@ const Account = () => {
     formData.append("profileImage", file);
 
     try {
-      const response = await fetch("http://localhost:3001/api/upload-profile", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: formData,
-      });
+      const response = await fetch(
+        "https://e149-51-174-77-66.ngrok-free.app/api/upload-profile",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: formData,
+        }
+      );
 
       const data = await response.json();
       if (data.filename) {
@@ -71,8 +77,8 @@ const Account = () => {
               src={
                 preview ||
                 (profileImage
-                  ? `http://localhost:3001/uploads/${profileImage}`
-                  : "http://localhost:3001/uploads/default-avatar.png")
+                  ? `https://e149-51-174-77-66.ngrok-free.app/uploads/${profileImage}`
+                  : " https://e149-51-174-77-66.ngrok-free.app/uploads/default-avatar.png")
               }
               alt="Profile Picture"
               className="profile-avatar"
