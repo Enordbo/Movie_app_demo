@@ -1,22 +1,45 @@
-import "./css/App.css";
-import Favorites from "./pages/Favorites";
-import Home from "./pages/Home";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Movieprovider } from "./contexts/MovieContexts";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Account from "./pages/Account";
 import NavBar from "./components/NavBar";
+import Favorites from "./pages/Favorites";
+import { useLoginPrompt } from "./contexts/LoginPromptContext";
+import LoginPrompt from "./components/LoginPrompt";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-function App() {
+
+const App = () => {
+  const { showPrompt, setShowPrompt } = useLoginPrompt();
+
   return (
-    <Movieprovider>
+    <>
       <NavBar />
-      <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/account"
+            element={
+              <ProtectedRoute>
+                <Account />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/favorites"
+            element={
+              <ProtectedRoute>
+                <Favorites />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
-      </main>
-    </Movieprovider>
+
+      {showPrompt && <LoginPrompt onClose={() => setShowPrompt(false)} />}
+    </>
   );
-}
+};
 
 export default App;

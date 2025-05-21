@@ -1,16 +1,28 @@
 import "../css/MovieCard.css";
 import { useMovieContext } from "../contexts/MovieContexts";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext.jsx";
+import { useLoginPrompt } from "../contexts/LoginPromptContext";
 
 function MovieCard({ movie }) {
-  const { isFavorite, addToFavorites, removeFromFavorites } =
-    useMovieContext();
+  const { isFavorite, addToFavorites, removeFromFavorites } = useMovieContext();
+  const { user } = useContext(AuthContext);
+  const { requireLogin } = useLoginPrompt();
+
   const favorite = isFavorite(movie.id);
 
-  function onFavoriteClick(e) {
+  const handleFavoriteClick = (e) => {
     e.preventDefault();
-    if (favorite) removeFromFavorites(movie.id);
-    else addToFavorites(movie);
-  }
+
+    // Krev innlogging før handling
+    requireLogin(user, () => {
+      if (favorite) {
+        removeFromFavorites(movie.id);
+      } else {
+        addToFavorites(movie);
+      }
+    });
+  };
 
   return (
     <div className="movie-card">
@@ -22,7 +34,8 @@ function MovieCard({ movie }) {
         <div className="movie-overlay">
           <button
             className={`favorite-btn ${favorite ? "active" : ""}`}
-            onClick={onFavoriteClick}
+            onClick={handleFavoriteClick}
+            title={favorite ? "Fjern fra favoritter" : "Legg til i favoritter"}
           >
             ♥
           </button>

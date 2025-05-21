@@ -1,0 +1,157 @@
+.account-container {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.account-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #222;
+}
+
+.account-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.profile-picture {
+  text-align: center;
+}
+
+.profile-picture img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00cccc;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin-bottom: 0.5rem;
+}
+
+.profile-picture input[type="file"] {
+  display: block;
+  margin: 0 auto;
+}
+
+.user-info {
+  font-size: 1rem;
+  color: #0f0f0f;
+}
+
+.account-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.account-tabs button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background: #000000;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.account-tabs button:hover {
+  background: #e0e0e0;
+}
+
+.account-tabs .active {
+  background: #00cccc;
+  color: white;
+}
+
+.account-tab-content {
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.account-tab-content h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.account-tab-content input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.account-tab-content button {
+  background: #00cccc;
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.account-tab-content button:hover {
+  background: #009e9e;
+}
+
+.profile-picture-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #00bcd4;
+  transition: 0.3s ease;
+}
+
+.avatar-overlay {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 188, 212, 0.6);
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  border-radius: 50%;
+  transition: 0.3s ease;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.avatar-overlay:hover .overlay-text {
+  opacity: 1;
+}
+
+.account-container p {
+  color: #000000;
+}
