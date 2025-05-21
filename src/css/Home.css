@@ -86,8 +86,10 @@
 }
 
 .home .movie-card {
-  width: 100vw;
-  max-width: 100%;
+  .movie-card {
+    max-width: 280px;
+    min-height: 450px;
+  }
 }
 
 
